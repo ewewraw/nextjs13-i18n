@@ -5,7 +5,3 @@ export default function Page() {
 
   return <h1>{t('message_1')}</h1>
 }
-
-export const metadata = {
-  title: 'App directory',
-}
