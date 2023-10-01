@@ -1,16 +1,33 @@
+'use client';
 import NavBar from "@/components/NavBar";
-import React from "react";
+import React, {useState} from "react";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import './globals.css'
+import useTranslation from "next-translate/useTranslation";
 
-export default function RootLayout({children, params: {lang},}: {
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+        primary: {
+            main: '#1976d2',
+        },
+    },
+});
+
+export default function RootLayout({children}: {
     children: React.ReactNode
-    params: { lang: string }
 }) {
+
+    const i18n = useTranslation()
+    const [lang, changeLang] = useState(i18n.lang)
+
     return (
-        <html lang={lang}>
-        <head/>
+        <html>
         <body>
-        <NavBar/>
-        {children}
+        <ThemeProvider theme={darkTheme}>
+            <NavBar/>
+            {children}
+        </ThemeProvider>
         </body>
         </html>
     )
